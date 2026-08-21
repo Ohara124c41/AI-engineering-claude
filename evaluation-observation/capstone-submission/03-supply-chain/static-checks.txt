@@ -1,0 +1,10 @@
+System 3 — Investigate Supply Chain Risk with Multi-Source Synthesis/03-resilient-coordinator/solution
+Commands: mypy supply_chain_risk/ ; ruff check supply_chain_risk/ tests/   (venv: C:\Users\<user>\venvs\eo3)
+Notes: (1) mypy installed from source (--no-binary mypy) — Windows Application Control blocks the compiled wheel's DLLs; (2) transitive numpy pinned <2.2 because numpy 2.5 stubs use 3.12-only 'type' statements while the project's mypy targets python_version 3.11. Tests re-verified green after the pin (34 passed).
+Date: 2026-08-20T22:13:08Z
+--- mypy ---
+Success: no issues found in 8 source files
+mypy exit code: 0
+--- ruff ---
+All checks passed!
+ruff exit code: 0

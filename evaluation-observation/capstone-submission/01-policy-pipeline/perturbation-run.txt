@@ -1,0 +1,17 @@
+System 1 perturbation — required field (premium) genuinely absent from the document
+Perturbed copy: capstone-submission/perturbations/POL-2025-001_no_premium.txt
+Change: deleted the line 'Total Policy Premium ........................  $ 1,847.62' from a COPY of data/policies/POL-2025-001.txt (bundled data untouched)
+Date: 2026-08-20T22:20:59Z
+
+$ policy-extractor extract <perturbed copy> --policy-id POL-2025-001
+2026-08-20 15:21:02,967 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:21:02,976 INFO validation_failed
+{
+  "category": "missing_source",
+  "detected_pattern": "premium_amount_absent",
+  "field": "premium_amount",
+  "kind": "escalation",
+  "policy_id": "POL-2025-001",
+  "reason": "Field 'premium_amount' returned null \u2014 the source document does not contain this information. Retry is futile; escalate to human review."
+}
+exit code: 1

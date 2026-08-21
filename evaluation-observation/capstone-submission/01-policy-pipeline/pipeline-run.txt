@@ -1,0 +1,73 @@
+System 1 — end-to-end pipeline run (LIVE API via Vocareum proxy; key not shown)
+Path: Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+Date: 2026-08-20 15:29–15:31 local (run in PowerShell; this is the run shown in screenshots/)
+Note: an identical run at 15:16 produced 0/9/0 (all human_review); this run produced 0/8/1 —
+live-model nondeterminism moves one clean policy (POL-2025-007) into the deterministic
+stratified spot-check instead. The calibration report (pure Python) is identical across runs.
+
+$ policy-extractor pipeline data\policies\ --routing-out routing_decisions.json --seed 42
+2026-08-20 15:29:25,361 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:29:34,818 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:29:34,818 INFO review_disagreement policy_id=POL-2025-001 fields=['coverage_limit', 'endorsements']
+2026-08-20 15:29:38,372 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:29:45,040 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:29:45,044 INFO review_disagreement policy_id=POL-2025-002 fields=['deductible', 'coverage_limit']
+2026-08-20 15:29:47,352 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:29:54,958 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:29:54,958 INFO review_disagreement policy_id=POL-2025-003 fields=['coverage_limit']
+2026-08-20 15:29:57,519 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:05,128 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:05,128 INFO review_disagreement policy_id=POL-2025-004 fields=['deductible', 'coverage_limit']
+2026-08-20 15:30:08,032 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:17,481 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:17,481 INFO review_disagreement policy_id=POL-2025-005 fields=['deductible', 'coverage_limit', 'endorsements']
+2026-08-20 15:30:20,061 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:25,916 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:25,916 INFO review_disagreement policy_id=POL-2025-006 fields=['deductible']
+2026-08-20 15:30:28,577 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:33,186 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:36,962 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:43,016 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:43,016 INFO review_disagreement policy_id=POL-2025-008 fields=['policy_type']
+2026-08-20 15:30:46,190 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:46,190 INFO validation_failed
+2026-08-20 15:30:48,878 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:48,879 INFO validation_failed
+2026-08-20 15:30:51,300 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:57,552 INFO HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+2026-08-20 15:30:57,552 INFO review_disagreement policy_id=POL-2025-010 fields=['coverage_limit']
+{
+  "decisions_written": 9,
+  "auto_approve": 0,
+  "human_review": 8,
+  "spot_check": 1,
+  "escalations": 1,
+  "pattern_summary": {
+    "endorsements_absent": {
+      "count": 1,
+      "policies": [
+        "POL-2025-009"
+      ],
+      "categories": [
+        "missing_source"
+      ]
+    },
+    "premium_does_not_match_components": {
+      "count": 1,
+      "policies": [
+        "POL-2025-010"
+      ],
+      "categories": [
+        "consistency"
+      ]
+    }
+  },
+  "output_path": "routing_decisions.json"
+}
+exit code: 0
+
+$ python "..\..\..\Project-Evaluation and Observability Project\calibration_report.py"
+auto      premium_amount  n=3 conf=0.95 acc=1.00 brier=0.003
+home      deductible      n=1 conf=0.90 acc=1.00 brier=0.010
+umbrella  exclusions      n=2 conf=0.93 acc=0.00 brier=0.865
+OVERALL brier=0.291

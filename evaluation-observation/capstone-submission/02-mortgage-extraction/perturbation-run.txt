@@ -1,0 +1,39 @@
+System 2 perturbation — the inverse experiment: correct the stated total so the line items DO sum
+Perturbed copy: capstone-submission/perturbations/income_sum_fixed.txt
+Change: in a COPY of fixtures/documents/income_sum_mismatch.txt, replaced the stated monthly total 10,892.17 with 9,642.17 (= 5416.67+1250.00+2140.00+385.50+450.00, the sum of the line items). Bundled fixture untouched.
+Mode: --mode record (live API — the perturbed document has no recorded response)
+Date: 2026-08-20T22:21:28Z
+
+$ mortgage-extract <perturbed copy> --mode record --verbose
+httpx2: HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+mortgage_extractor.pipeline: classify: model=claude-haiku-4-5 in=1612 out=93 type=income_verification
+httpx2: HTTP Request: POST https://claude.vocareum.com/v1/messages "HTTP/1.1 200 OK"
+mortgage_extractor.pipeline: extract: model=claude-haiku-4-5 in=3771 out=153 tool=extract_income_verification
+{
+  "extraction": {
+    "borrower": {
+      "full_name": "Marcus T. Hollingsworth",
+      "coborrower_name": null,
+      "ssn_last4": null,
+      "date_of_birth": null,
+      "email": null,
+      "phone": null
+    },
+    "property": null,
+    "loan": null,
+    "income": {
+      "base_monthly": 5416.67,
+      "bonus_monthly": 1250.0,
+      "bonus_ytd": null,
+      "commission_monthly": 2140.0,
+      "overtime_monthly": 385.5,
+      "other_monthly": 450.0,
+      "stated_monthly_total": 9642.17
+    }
+  },
+  "validation": {
+    "consistent": true,
+    "discrepancies": []
+  }
+}
+exit code: 0

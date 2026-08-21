@@ -1,0 +1,52 @@
+System 3 perturbation — force the logistics source to fail mid-run
+Change: added the --simulate-timeout flag (configuration change; no files edited)
+Commands: supply-chain-investigate meridian --offline   vs   supply-chain-investigate meridian --offline --simulate-timeout
+Full captures: 03-supply-chain/investigation-run.txt and 03-supply-chain/timeout-run.txt
+Date: 2026-08-20T22:21:52Z
+
+=== Contrast ===
+
+[unperturbed] briefing has no availability banner; logistics contributes:
+15:    - 12.0 days — logistics (as of 2026-04-05)
+19:| average_lead_time_days | 12.0 days | 2026-04-05 | logistics |
+35:    - 11.0 shipments — logistics (as of 2026-04-05)
+39:| late_shipment_count | 11.0 shipments | 2026-04-05 | logistics |
+54:    - 78.0 percent — logistics (as of 2026-04-05)
+58:| on_time_delivery_rate | 78.0 percent | 2026-04-05 | logistics |
+
+[unperturbed] Contested section:
+## Contested
+### on_time_delivery_rate  _[2 sources, conflicting]_  ⚠️ ESCALATE
+- escalation: high-impact metric is contested across sources
+- Reported values by source:
+    - 95.0 percent — supplier_audit (as of 2026-04-10)
+    - 78.0 percent — logistics (as of 2026-04-05)
+
+| Metric | Value | As of | Source |
+| --- | --- | --- | --- |
+| on_time_delivery_rate | 78.0 percent | 2026-04-05 | logistics |
+
+
+## Incomplete
+[unperturbed] Incomplete section:
+## Incomplete
+### production_capacity_utilization  _[missing source: no source reported this metric]_  ⚠️ ESCALATE
+- escalation: high-impact metric has no usable source
+- missing source: no source reported this metric
+
+exit code: 0
+
+[--simulate-timeout] banner + changed sections:
+11:> Sources unavailable: logistics unavailable (timeout)
+## Contested
+_none_
+
+## Incomplete
+### late_shipment_count  _[missing source: timeout reading logistics]_
+- missing source: timeout reading logistics
+
+### production_capacity_utilization  _[missing source: no source reported this metric]_  ⚠️ ESCALATE
+- escalation: high-impact metric has no usable source
+- missing source: no source reported this metric
+
+exit code: 0

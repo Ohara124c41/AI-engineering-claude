@@ -1,0 +1,10 @@
+System 1 — Build a Validated, Routed Insurance Policy Extraction Pipeline/04-hitl-routing/solution
+Commands: mypy policy_extractor/ ; ruff check policy_extractor/ tests/   (venv: C:\Users\<user>\venvs\eo1)
+Note: mypy installed from source (--no-binary mypy) because Windows Application Control blocks the compiled wheel's DLLs; results identical, runs slower.
+Date: 2026-08-20T22:10:37Z
+--- mypy ---
+Success: no issues found in 11 source files
+mypy exit code: 0
+--- ruff ---
+All checks passed!
+ruff exit code: 0

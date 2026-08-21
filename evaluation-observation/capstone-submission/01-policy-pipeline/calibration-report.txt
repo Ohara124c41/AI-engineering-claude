@@ -1,0 +1,9 @@
+System 1 — sliced calibration report (pure Python, no API)
+Command: python calibration_report.py  (provided script, run with the System 1 venv from the solution dir)
+Date: 2026-08-20T22:19:46Z
+---
+auto      premium_amount  n=3 conf=0.95 acc=1.00 brier=0.003
+home      deductible      n=1 conf=0.90 acc=1.00 brier=0.010
+umbrella  exclusions      n=2 conf=0.93 acc=0.00 brier=0.865
+OVERALL brier=0.291
+exit code: 0

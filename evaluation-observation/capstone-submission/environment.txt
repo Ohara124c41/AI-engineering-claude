@@ -1,0 +1,41 @@
+Environment — Evaluation and Observability Capstone
+====================================================
+
+Date of runs:     2026-08-20
+OS:               Windows 11 Home, build 10.0.26200 (no WSL — native Windows, PowerShell/Git Bash)
+Python:           3.12.10 (requirement: 3.11+)
+Venv setup:       one venv per system, `pip install -e ".[dev]"` from each solution folder:
+                    System 1  C:\Users\<user>\venvs\eo1  -> Build a Validated, Routed Insurance Policy Extraction Pipeline\04-hitl-routing\solution
+                    System 2  C:\Users\<user>\venvs\eo2  -> Build a Resilient Mortgage Document Extraction System\04-validate-mathematical-consistency\solution
+                    System 3  C:\Users\<user>\venvs\eo3  -> Investigate Supply Chain Risk with Multi-Source Synthesis\03-resilient-coordinator\solution
+                  Venvs live at short paths (not in-project .venv) because pip fails inside the
+                  deeply nested course folders on Windows' 260-character path limit
+                  (LongPathsEnabled=0 on this machine).
+
+Live API:         System 1 pipeline run and the System 1/System 2 perturbation runs used the live
+                  Anthropic API through the Udacity/Vocareum proxy (ANTHROPIC_API_KEY voc-… +
+                  ANTHROPIC_BASE_URL=https://claude.vocareum.com; the SDK reads both from the
+                  environment). Everything else ran offline (replay fixtures / --offline).
+
+Environment workarounds (no source files were modified):
+  1. mypy: the compiled wheel's DLLs are blocked by Windows Application Control on this
+     machine ("DLL load failed while importing fscache: An Application Control policy has
+     blocked this file"). Fixed with `pip install --force-reinstall --no-binary mypy mypy`
+     (pure-Python build; identical results, slower).
+  2. System 3 mypy: the transitively installed numpy 2.5.2 ships stubs using the Python
+     3.12-only `type` statement, while the project's mypy targets python_version 3.11.
+     Pinned `numpy<2.2` in the System 3 venv; re-verified tests still pass (34 passed).
+  3. System 3 CLI output contains Unicode (—, ⚠️) that Windows' default cp1252 console
+     encoding cannot print. Set PYTHONUTF8=1 for the runs.
+  4. Vocareum model-alias availability changed DURING the session. At 15:16 local time the
+     class key accepted the alias `claude-haiku-4-5` that the systems request, and the live
+     pipeline run in 01-policy-pipeline/pipeline-run.txt succeeded. By 15:27 the same key
+     returned 400 "Model 'claude-haiku-4-5' is not available for your organization" for the
+     bare alias, while the dated `claude-haiku-4-5-20251001` continued to work — and by 15:29
+     the alias worked again. The pack's pipeline-run.txt / routing_decisions.json and the
+     System 1 screenshot are from the successful 15:29 live run. A reviewer re-running live
+     may hit the same intermittent 400, since the CLI hardcodes the bare alias with no
+     override flag; retry a few minutes later, or fall back to the instructions' offline
+     alternative (`pytest tests/test_us04_routing.py -v`). (A proxy allowlist flapping under
+     a hardcoded model name, surfacing only as a 400 at run time, is itself a neat
+     observability lesson.)
