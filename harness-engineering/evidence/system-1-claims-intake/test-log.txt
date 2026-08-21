@@ -1,0 +1,44 @@
+System 1 — Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution
+Command: pytest tests/ -vv   (venv: C:\Users\<user>\venvs\hx1, Python 3.12.10; -vv overrides the project's 'addopts = -ra -q')
+Date: 2026-08-20T18:47:59Z
+---
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\<user>\venvs\hx1\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\<user>\._research\Udacity\AI-engineering-claude\harness-engineering\Build a Claims Intake Agent with a stop_reason-Driven Loop\exercises\03-dynamic-decomposition\solution
+configfile: pyproject.toml
+plugins: anyio-4.14.2
+collecting ... collected 29 items
+
+tests/test_antipatterns.py::test_no_string_membership_against_text_in_loop PASSED [  3%]
+tests/test_antipatterns.py::test_no_integer_literal_iteration_cap_in_loop PASSED [  6%]
+tests/test_antipatterns.py::test_stop_reason_is_loop_control PASSED      [ 10%]
+tests/test_antipatterns.py::test_no_claim_type_equality_branching_in_package PASSED [ 13%]
+tests/test_fixtures.py::test_policies_file_loads_and_covers_all_claim_types PASSED [ 17%]
+tests/test_fixtures.py::test_eight_fixtures_exist PASSED                 [ 20%]
+tests/test_fixtures.py::test_every_fixture_references_a_known_policy PASSED [ 24%]
+tests/test_fixtures.py::test_fixture_outcome_distribution_meets_targets PASSED [ 27%]
+tests/test_fixtures.py::test_routed_fixtures_cover_all_four_types_and_all_severities PASSED [ 31%]
+tests/test_fixtures.py::test_fixture_schemas_are_consistent PASSED       [ 34%]
+tests/test_fixtures.py::test_ambiguous_fixtures_have_clarification_scripts PASSED [ 37%]
+tests/test_fixtures.py::test_claim_06_is_the_escalation_fixture PASSED   [ 41%]
+tests/test_loop.py::test_loop_terminates_on_end_turn PASSED              [ 44%]
+tests/test_loop.py::test_loop_continues_on_tool_use PASSED               [ 48%]
+tests/test_loop.py::test_loop_handles_multiple_tool_use_blocks_in_one_turn PASSED [ 51%]
+tests/test_loop.py::test_loop_raises_on_unexpected_stop_reason PASSED    [ 55%]
+tests/test_loop.py::test_budget_raises_when_token_cap_exceeded PASSED    [ 58%]
+tests/test_tools.py::test_seven_tools_registered_with_schemas PASSED     [ 62%]
+tests/test_tools.py::test_categorical_fields_use_enums PASSED            [ 65%]
+tests/test_tools.py::test_lookup_policy_returns_record PASSED            [ 68%]
+tests/test_tools.py::test_lookup_policy_unknown_id_returns_graceful_error PASSED [ 72%]
+tests/test_tools.py::test_unknown_tool_returns_graceful_error PASSED     [ 75%]
+tests/test_tools.py::test_request_clarification_returns_scripted_reply PASSED [ 79%]
+tests/test_tools.py::test_request_clarification_no_response_when_unscripted PASSED [ 82%]
+tests/test_tools.py::test_routing_requires_classification_and_severity PASSED [ 86%]
+tests/test_tools.py::test_routing_writes_jsonl_and_marks_terminal PASSED [ 89%]
+tests/test_tools.py::test_escalation_writes_jsonl_and_marks_terminal PASSED [ 93%]
+tests/test_tools.py::test_double_terminal_is_graceful_error PASSED       [ 96%]
+tests/test_tools.py::test_handler_exception_is_caught_as_transient_error PASSED [100%]
+
+============================= 29 passed in 0.08s ==============================
+pytest exit code: 0

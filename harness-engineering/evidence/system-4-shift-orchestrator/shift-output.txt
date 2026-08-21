@@ -1,0 +1,9 @@
+System 4 — recorded-response shift run (offline; SQL-filtered slice)
+Command: python -m shift_monitor run-shift --shift C --warm-db data/warm.sqlite --since 2026-04-20T00:00:00Z --recorded-response fixtures/recorded_responses/shift_C_2026-04-30.json
+Date: 2026-08-20T18:23:09Z
+---
+2026-08-20 11:23:09,947 shift_monitor.pipeline INFO run_shift start: shift=C since=2026-04-20T00:00:00Z
+2026-08-20 11:23:09,950 shift_monitor.pipeline INFO run_shift done: shift=C new=5
+shift C: 5 new defects
+Shift C 2026-04-30: 3 high + 2 medium defects on capacitor-bank-C-7, all from lot 2026-0430-B (DAR 0.39, ESR ~19 mOhm); 1 low VP-4 vent squeal (repeat). Lot quarantine recommended.
+exit code: 0

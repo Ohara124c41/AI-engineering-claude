@@ -1,0 +1,25 @@
+System 1 — live run (claude-sonnet-4-6, attempt 2)
+Command: python -m claims_intake.run --all --model claude-sonnet-4-6
+Date: 2026-08-20T18:33:53Z
+key set: True (voc- via https://claude.vocareum.com)
+---
+run_dir: C:\Users\<user>\._research\Udacity\AI-engineering-claude\harness-engineering\Build a Claims Intake Agent with a stop_reason-Driven Loop\exercises\03-dynamic-decomposition\solution\runs\20260820_113353
+[claim_01_kitchen_fire] policy=POL-1001 expected=routed
+  \u2192 outcome=incomplete turns=2 clarifications=0 tokens=6299/504 est=$0.0265
+[claim_02_stolen_bike] policy=POL-1007 expected=routed
+  \u2192 outcome=routed turns=6 clarifications=0 tokens=21564/916 est=$0.0784
+[claim_03_water_damage] policy=POL-1004 expected=routed
+  \u2192 outcome=incomplete turns=3 clarifications=0 tokens=9343/468 est=$0.0350
+[claim_04_neighbor_injury] policy=POL-1002 expected=routed
+  \u2192 outcome=routed turns=5 clarifications=0 tokens=18989/1090 est=$0.0733
+[claim_05_auto_collision] policy=POL-1003 expected=routed
+  \u2192 outcome=routed turns=5 clarifications=0 tokens=19142/1097 est=$0.0739
+[claim_06_low_confidence_escalation] policy=POL-1008 expected=escalated
+  \u2192 outcome=incomplete turns=3 clarifications=0 tokens=9780/892 est=$0.0427
+[claim_07_tree_falls_on_car] policy=POL-1005 expected=routed
+  \u2192 outcome=incomplete turns=3 clarifications=0 tokens=9471/542 est=$0.0365
+[claim_08_minor_porch_damage] policy=POL-1006 expected=routed
+  \u2192 outcome=routed turns=5 clarifications=0 tokens=18908/1077 est=$0.0729
+summary: C:\Users\<user>\._research\Udacity\AI-engineering-claude\harness-engineering\Build a Claims Intake Agent with a stop_reason-Driven Loop\exercises\03-dynamic-decomposition\solution\runs\20260820_113353\summary.md
+total estimated cost: $0.4393
+exit code: 1

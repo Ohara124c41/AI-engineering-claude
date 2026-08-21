@@ -1,0 +1,70 @@
+# ============================================================
+# Credentials — never commit
+# ============================================================
+.env
+.env.*
+!.env.example
+*.env
+!*.env.example
+credentials.json
+*.pem
+*.key
+
+# Claude Code local settings (records absolute paths and local permissions)
+.claude/settings.local.json
+
+# ============================================================
+# Python
+# ============================================================
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================================
+# Node / TypeScript
+# ============================================================
+node_modules/
+dist/
+*.tsbuildinfo
+npm-debug.log*
+
+# ============================================================
+# Generated at runtime — reproducible, not source
+# ============================================================
+logs/
+*.log
+test.db
+data/warm.sqlite
+data/hot_state.json
+data/shift_scratchpad.jsonl
+data/forks/
+scraped_content/
+runs/
+
+# Note: data/meridian/*.sqlite under the Supply Chain project are BUNDLED
+# course fixtures, not generated output — they are intentionally tracked.
+
+# ============================================================
+# OS / editor noise
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# Editable office source files are retained locally; publish rendered or source-code artifacts instead.
+*.pptx
+*.docx

@@ -1,0 +1,84 @@
+System 3 — .claude/ structure and key config lines
+Path: /c/Users/<user>/._research/Udacity/AI-engineering-claude/harness-engineering/Configure Claude Code for a Multi-Surface Monorepo Team/04-plan-mode-and-explore-decision-doc/solution
+
+=== Directory tree ===
+.claude/commands/review.md
+.claude/rules/api.md
+.claude/rules/react.md
+.claude/rules/tests.md
+.claude/skills/deploy-check/SKILL.md
+.claude/standards/api.md
+.claude/standards/database.md
+.claude/standards/frontend.md
+.claude/standards/testing.md
+CLAUDE.md
+
+=== CLAUDE.md (@import lines) ===
+17:## Shared standards (modular via @-imports)
+21:- @.claude/standards/frontend.md
+22:- @.claude/standards/api.md
+23:- @.claude/standards/database.md
+24:- @.claude/standards/testing.md
+
+=== .claude/rules/api.md (frontmatter) ===
+---
+description: Conventions for Node.js API handlers
+paths:
+  - "src/api/**/*"
+---
+
+# API handler rules
+
+
+=== .claude/rules/react.md (frontmatter) ===
+---
+description: Conventions for React components and pages
+paths:
+  - "src/components/**/*"
+  - "src/pages/**/*"
+---
+
+# React component & page rules
+
+=== .claude/rules/tests.md (frontmatter) ===
+---
+description: Conventions for test files (co-located *.test.ts and *.test.tsx)
+paths:
+  - "**/*.test.tsx"
+  - "**/*.test.ts"
+---
+
+# Test file rules
+
+=== .claude/commands ===
+--- .claude/commands/review.md ---
+---
+description: Run the e-commerce team's PR review checklist against a pull request or local diff
+argument-hint: <pr-number | "HEAD~1..HEAD" | path/to/file>
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git status:*)
+  - Bash(gh pr diff:*)
+
+=== skills ===
+--- .claude/skills/deploy-check/SKILL.md (frontmatter) ---
+---
+name: deploy-check
+description: Run read-only pre-deployment validation in a forked sub-agent and report a single pass/fail summary back to the main session
+context: fork
+argument-hint: "[target-branch] (defaults to main)"
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git rev-parse:*)
+  - Bash(git ls-files:*)
+  - Bash(gh pr view:*)

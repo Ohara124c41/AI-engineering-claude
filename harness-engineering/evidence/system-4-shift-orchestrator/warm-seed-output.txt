@@ -1,0 +1,5 @@
+System 4 — seed warm tier
+Date: 2026-08-20T18:20:35Z
+---
+seed exit code: 0
+warm-tier total defect rows: 40

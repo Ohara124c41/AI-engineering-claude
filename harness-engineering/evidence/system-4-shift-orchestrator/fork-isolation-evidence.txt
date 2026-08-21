@@ -1,0 +1,12 @@
+System 4 — fork-path demonstration (two competing hypotheses, isolated scratchpads)
+Date: 2026-08-20T18:23:51Z
+Uses shift_monitor/fork.py: fork_for_hypothesis() + Scratchpad; no solution code edited.
+---
+main scratchpad lines before forks: 2
+fork dirs: data\forks\hyp-lot-2026-0430-B-dielectric | data\forks\hyp-capbank-C7-fixture-wear
+main scratchpad lines after fork writes (unchanged = isolated): 2
+-- data\forks\hyp-lot-2026-0430-B-dielectric/scratchpad.jsonl --
+{"hypothesis_id":"hyp-lot-2026-0430-B-dielectric","evidence":"All 3 high-severity 2026-04-30 defects share lot 2026-0430-B; DAR 0.39 and ESR ~19 mOhm point to impregnation defect","conclusion":"SUPPORTED: quarantine lot, sample retest","ts":"2026-08-20T18:23:51Z"}
+-- data\forks\hyp-capbank-C7-fixture-wear/scratchpad.jsonl --
+{"hypothesis_id":"hyp-capbank-C7-fixture-wear","evidence":"DEF-20260427-001 critical on capacitor-bank-C-7 predates lot 2026-0430-B arrival; but no mechanical wear signatures in slice","conclusion":"NOT SUPPORTED: defect signature is electrical, not mechanical","ts":"2026-08-20T18:23:51Z"}
+main scratchpad lines after explicit merge_findings(): 4

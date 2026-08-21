@@ -1,0 +1,11 @@
+System 4 — SQL pre-filter evidence
+Query (shift_monitor/warm.py, defects_since): SELECT * FROM defects WHERE ts > ? ORDER BY ts DESC LIMIT ?  (index: idx_defects_shift_ts)
+Called from shift_monitor/pipeline.py: gather_new_defects(warm, since_ts, limit=50)
+
+warm-tier total: 40 defects
+SQL slice (ts > 2026-04-20T00:00:00Z): 5 defects passed to the model
+  ('DEF-20260429-001', '2026-04-29T12:05:28Z', 'A', 'coolant-loop-CL-5', 'medium')
+  ('DEF-20260427-001', '2026-04-27T01:19:46Z', 'C', 'capacitor-bank-C-7', 'critical')
+  ('DEF-20260425-001', '2026-04-25T20:51:09Z', 'B', 'welder-W-9', 'low')
+  ('DEF-20260423-001', '2026-04-23T10:34:52Z', 'A', 'rotor-coil-RC-8', 'high')
+  ('DEF-20260421-001', '2026-04-21T04:07:18Z', 'C', 'pressure-sensor-PS-22', 'low')

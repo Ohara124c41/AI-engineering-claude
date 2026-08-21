@@ -1,0 +1,5 @@
+   2 queues/auto.jsonl
+   1 queues/liability.jsonl
+   3 queues/property_damage.jsonl
+   1 queues/theft.jsonl
+   7 total
